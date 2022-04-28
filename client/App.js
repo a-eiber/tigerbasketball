@@ -10,6 +10,9 @@ import Dashboard from './components/Dashboard';
 import AllStories from './components/AllStories';
 import Footer from './components/Footer';
 import Schedule from './components/Schedule';
+import Standings from './components/Standings';
+import Results from './components/Results';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/news" element={<AllStories />} />
             <Route exact path="/schedule" element={<Schedule />} />
+            <Route exact path="/standings" element={<Standings />} />
+            <Route exact path="/results" element={<Results />} />
+            <Route exact path="/register" element={<Register />} />
           </Routes>
           <Footer />
         </div>
