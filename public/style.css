@@ -2,17 +2,14 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-}
+/* a,
+a:hover {
+  text-decoration: inherit;
+  color: inherit;
+} */
 
 label {
   display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
 }
 
 form div {
