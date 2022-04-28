@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import AllStories from './components/AllStories';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/news" element={<AllStories />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
       <ToastContainer autoClose={2000} />

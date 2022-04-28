@@ -21,7 +21,6 @@ const AllStories = () => {
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
-    console.log('use effect rendered');
     if (isError) {
       console.log(message);
     }
