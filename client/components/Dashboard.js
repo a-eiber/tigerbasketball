@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/authSlice';
 import RegisterNewAdmin from './RegisterNewAdmin';
+import AdminStories from './AdminStories';
+import { Container } from 'react-bootstrap';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -21,12 +23,19 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
-      <h3>Create New Admin</h3>
-      <RegisterNewAdmin />
-      <button type="button" onClick={handleLogout}>
-        Logout
-      </button>
+      <Container>
+        <h1>Dashboard</h1>
+        <hr />
+        <h3>News Stories</h3>
+        <AdminStories />
+        <hr />
+        <h3>Create New Admin</h3>
+        <RegisterNewAdmin />
+        <hr />
+        <button type="button" onClick={handleLogout}>
+          Logout
+        </button>
+      </Container>
     </div>
   );
 };

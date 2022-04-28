@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import Stories from './Stories';
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
             <Button variant="info">
               <h3>Latest News</h3>
             </Button>
+            <Stories />
           </Col>
           <Col className="text-center mt-3">
             <Button variant="info">

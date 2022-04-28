@@ -50,10 +50,6 @@ const Player = db.define('player', {
       isEmail: true,
     },
   },
-  isAdmin: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
 });
 
 module.exports = Player;
