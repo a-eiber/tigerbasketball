@@ -11,15 +11,16 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.auth);
+  const adminToken = localStorage.getItem('token');
+
+  if (!user || !adminToken) {
+    return <h3>User Not Authorized!</h3>;
+  }
 
   const handleLogout = () => {
     dispatch(logout());
     navigate('/');
   };
-
-  if (!user) {
-    return <h3>User Not Authorized!</h3>;
-  }
 
   return (
     <div>

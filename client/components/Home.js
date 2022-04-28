@@ -15,9 +15,6 @@ const Home = () => {
         </h4>
         <Row>
           <Col className="text-center mt-3">
-            <Button variant="info">
-              <h3>Latest News</h3>
-            </Button>
             <Stories />
           </Col>
           <Col className="text-center mt-3">

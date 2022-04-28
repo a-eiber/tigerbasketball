@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { injectStyle } from 'react-toastify/dist/inject-style';
 import { login, reset } from '../store/authSlice';
 
 const Login = () => {
@@ -17,7 +18,11 @@ const Login = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      injectStyle();
+      toast.error('Incorrect username/password');
+      setUsername('');
+      setPassword('');
+      console.log(message);
     }
 
     if (isSuccess || user) {
