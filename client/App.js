@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import AllStories from './components/AllStories';
 import Footer from './components/Footer';
+import Schedule from './components/Schedule';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/news" element={<AllStories />} />
+            <Route exact path="/schedule" element={<Schedule />} />
           </Routes>
           <Footer />
         </div>
