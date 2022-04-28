@@ -23,6 +23,7 @@ const RegisterNewAdmin = () => {
 
   return (
     <div>
+      <h3>Create New Admin</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">

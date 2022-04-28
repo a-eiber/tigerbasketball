@@ -26,10 +26,8 @@ const Dashboard = () => {
       <Container>
         <h1>Dashboard</h1>
         <hr />
-        <h3>News Stories</h3>
         <AdminStories />
         <hr />
-        <h3>Create New Admin</h3>
         <RegisterNewAdmin />
         <hr />
         <button type="button" onClick={handleLogout}>

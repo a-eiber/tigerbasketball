@@ -35,7 +35,7 @@ const Stories = () => {
 
   return (
     <div>
-      <h3>Stories</h3>
+      <h3>Create New Story</h3>
       <StoryForm />
     </div>
   );

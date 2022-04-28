@@ -40,12 +40,14 @@ const StoryForm = () => {
           onChange={(e) => setAuthor(e.target.value)}
         />
         <label htmlFor="text">Story Text</label>
-        <input
-          type="text"
+        <textarea
+          rows="10"
+          cols="50"
           name="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
+        <br />
         <button type="submit">Add Story</button>
       </form>
     </div>
