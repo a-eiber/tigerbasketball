@@ -16,3 +16,12 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.navbar .navbar-nav .nav-link {
+  color: #fff;
+  font-size: 1.1em;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: rgb(0, 10, 65);
+}
