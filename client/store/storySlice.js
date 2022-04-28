@@ -40,6 +40,24 @@ export const getStories = createAsyncThunk(
   },
 );
 
+// Delete Story
+export const deleteStory = createAsyncThunk(
+  'stories/delete',
+  async (id, thunkAPI) => {
+    try {
+      const adminToken = localStorage.getItem('token');
+      const response = await axios.delete(`/api/stories/${id}`, {
+        headers: {
+          authorization: adminToken,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.toString());
+    }
+  },
+);
+
 export const storySlice = createSlice({
   name: 'stories',
   initialState,
@@ -70,6 +88,21 @@ export const storySlice = createSlice({
         state.stories = action.payload;
       })
       .addCase(getStories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteStory.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteStory.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.stories = state.stories.filter(
+          (story) => story.id !== action.payload.id,
+        );
+      })
+      .addCase(deleteStory.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

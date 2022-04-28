@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { createStory } from '../store/storySlice';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
-
 
 const StoryForm = () => {
   toast.configure();
@@ -12,15 +12,14 @@ const StoryForm = () => {
   const [text, setText] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(createStory({ title, author, text }));
     injectStyle();
     toast.success('Story added!');
-    setTitle('');
-    setAuthor('');
-    setText('');
+    navigate('/news');
   };
 
   return (

@@ -30,7 +30,11 @@ const Stories = () => {
 
   return (
     <div>
-      <Button variant="info">
+      <Button
+        variant="info"
+        onClick={() => {
+          navigate('/news');
+        }}>
         <h3>Latest News</h3>
       </Button>
       {stories.length > 0 ? (

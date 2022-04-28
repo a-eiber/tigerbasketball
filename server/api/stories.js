@@ -46,7 +46,7 @@ router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const story = await Story.findByPk(req.params.id);
     await story.destroy();
-    res.json(story);
+    res.json({ id: req.params.id });
   } catch (error) {
     next(error);
   }
