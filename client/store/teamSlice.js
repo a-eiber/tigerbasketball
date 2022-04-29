@@ -3,10 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   teams: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
 };
 
 // Create new team
@@ -43,39 +39,20 @@ export const getTeams = createAsyncThunk(
 export const teamSlice = createSlice({
   name: 'teams',
   initialState,
-  reducers: {
-    reset: (state) => initialState,
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createTeam.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(createTeam.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.teams.push(action.payload);
       })
-      .addCase(createTeam.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(getTeams.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(getTeams.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.teams = action.payload;
-      })
-      .addCase(getTeams.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
       });
   },
 });
 
-export const { reset } = teamSlice.actions;
 export default teamSlice.reducer;

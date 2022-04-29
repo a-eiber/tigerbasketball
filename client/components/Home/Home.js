@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Col, Container, Row } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import About from './About';
 import Bottom from './Bottom';
 import Headline from './Headline';
 import HomePageSchedule from './HomePageSchedule';
 import Stories from './Stories';
-import { getGames } from '../store/gameSlice';
-import { getStories } from '../store/storySlice';
+import { getGames } from '../../store/gameSlice';
+import { getStories } from '../../store/storySlice';
 
 const Home = () => {
   const dispatch = useDispatch();

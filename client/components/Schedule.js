@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getGames, reset, deleteGame } from '../store/gameSlice';
-import { Button, Container, Table } from 'react-bootstrap';
+import { getGames, deleteGame } from '../store/gameSlice';
+import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import { injectStyle } from 'react-toastify/dist/inject-style';
 import { toast } from 'react-toastify';
 import { FaTrash } from 'react-icons/fa';
@@ -11,26 +13,12 @@ const Schedule = () => {
 
   const [toggle, setToggle] = useState(true);
 
-  const { games, isLoading, isError, message } = useSelector(
-    (state) => state.games,
-  );
-
+  const { games } = useSelector((state) => state.games);
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     dispatch(getGames());
-    return () => {
-      dispatch(reset());
-    };
-  }, [isError, message, dispatch, toggle]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  }, [toggle]);
 
   return (
     <div>

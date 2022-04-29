@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createGame, getGames, reset } from '../store/gameSlice';
-import { getTeams } from '../store/teamSlice';
+import { createGame, getGames } from '../../store/gameSlice';
+import { getTeams } from '../../store/teamSlice';
 import { Form, Button, Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
@@ -18,30 +18,16 @@ const NewGame = () => {
   const [teamTwo, setTeamTwo] = useState('');
 
   const { user } = useSelector((state) => state.auth);
-  const { teams, isLoading, isError, message } = useSelector(
-    (state) => state.teams,
-  );
+  const { teams } = useSelector((state) => state.teams);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     if (!user) {
       navigate('/login');
     }
 
     dispatch(getGames());
     dispatch(getTeams());
-
-    return () => {
-      dispatch(reset());
-    };
-  }, [user, navigate, isError, message, dispatch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  }, [user]);
 
   const onSubmit = (e) => {
     e.preventDefault();

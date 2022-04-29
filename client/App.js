@@ -4,19 +4,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import Login from './components/Login';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import AllStories from './components/AllStories';
 import Footer from './components/Footer';
 import Schedule from './components/Schedule';
 import Standings from './components/Standings';
 import Results from './components/Results';
 import Register from './components/Register';
-import NewTeam from './components/NewTeam';
-import NewGame from './components/NewGame';
-import AdminStories from './components/AdminStories';
-import RegisterNewAdmin from './components/RegisterNewAdmin';
+import NewTeam from './components/Dashboard/NewTeam';
+import NewGame from './components/Dashboard/NewGame';
+import AdminStories from './components/Dashboard/AdminStories';
+import RegisterNewAdmin from './components/Dashboard/RegisterNewAdmin';
 
 function App() {
   return (

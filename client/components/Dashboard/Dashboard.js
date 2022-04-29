@@ -1,12 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../store/authSlice';
-import RegisterNewAdmin from './RegisterNewAdmin';
-import AdminStories from './AdminStories';
+import { logout } from '../../store/authSlice';
 import Container from 'react-bootstrap/Container';
-import NewGame from './NewGame';
-import NewTeam from './NewTeam';
 import Button from 'react-bootstrap/Button';
 
 const Dashboard = () => {
@@ -29,6 +25,7 @@ const Dashboard = () => {
     <div>
       <Container>
         <h1 className="text-center mt-3">Dashboard</h1>
+        <h3 className="text-center mt-3"> Welcome {user.username}</h3>
         <hr />
         <div className="d-flex justify-content-between">
           <Button

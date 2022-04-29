@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { createTeam, getTeams, reset } from '../store/teamSlice';
-import { Form, Button } from 'react-bootstrap';
+import { createTeam } from '../../store/teamSlice';
 import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
 
@@ -15,29 +16,12 @@ const NewTeam = () => {
   const [name, setName] = useState('');
 
   const { user } = useSelector((state) => state.auth);
-  const { teams, isLoading, isError, message } = useSelector(
-    (state) => state.teams,
-  );
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     if (!user) {
       navigate('/login');
     }
-
-    dispatch(getTeams());
-
-    return () => {
-      dispatch(reset());
-    };
-  }, [user, navigate, isError, message, dispatch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  }, [user]);
 
   const onSubmit = (e) => {
     e.preventDefault();

@@ -1,30 +1,14 @@
-import React, { useEffect } from 'react';
-import { Container, ListGroup, Button } from 'react-bootstrap';
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getGames, reset } from '../store/gameSlice';
 
 const HomePageSchedule = ({ games }) => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
-  // const { games, isError, message } = useSelector((state) => state.games);
+  let date, sortedDate, sortedGames;
 
-  // useEffect(() => {
-  //   if (isError) {
-  //     console.log(message);
-  //   }
-
-  //   dispatch(getGames());
-  //   return () => {
-  //     console.log('use effect unmounted, but why?');
-  //     dispatch(reset());
-  //   };
-  // }, [isError, message, dispatch]);
-
-  let date;
-  let sortedDate;
-  let sortedGames;
   if (games && games.length > 0) {
     sortedGames = [...games].sort((a, b) => {
       const da = new Date(a.gameDate);
@@ -33,6 +17,7 @@ const HomePageSchedule = ({ games }) => {
     });
 
     date = new Date([...sortedGames].shift().gameDate);
+
     sortedDate = new Date(date.setDate(date.getDate() + 1)).toDateString(
       'en-US',
     );

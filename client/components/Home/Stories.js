@@ -1,32 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getStories, reset } from '../store/storySlice';
-import { Button, Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import timeAgo from 'node-time-ago';
 
 const Stories = ({ stories }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // const { stories, isLoading, isError, message } = useSelector(
-  //   (state) => state.stories,
-  // );
-
-  // useEffect(() => {
-  //   if (isError) {
-  //     console.log(message);
-  //   }
-
-  //   dispatch(getStories());
-  //   return () => {
-  //     dispatch(reset());
-  //   };
-  // }, [isError, message, dispatch]);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
 
   return (
     <div>

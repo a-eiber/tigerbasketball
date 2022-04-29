@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
-import { register, reset } from '../store/authSlice';
+import { register } from '../../store/authSlice';
 
 const RegisterNewAdmin = () => {
   toast.configure();
@@ -19,7 +21,7 @@ const RegisterNewAdmin = () => {
 
   useEffect(() => {
     if (!user || !user.isAdmin) {
-      return <h1>User Not Authorized!</h1>;
+      navigate('/');
     }
   }, [user]);
 

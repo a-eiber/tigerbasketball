@@ -3,10 +3,6 @@ import axios from 'axios';
 
 const initialState = {
   stories: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
 };
 
 // Create new story
@@ -61,54 +57,21 @@ export const deleteStory = createAsyncThunk(
 export const storySlice = createSlice({
   name: 'stories',
   initialState,
-  reducers: {
-    reset: (state) => initialState,
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createStory.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(createStory.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
         state.stories.push(action.payload);
       })
-      .addCase(createStory.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(getStories.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(getStories.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
         state.stories = action.payload;
       })
-      .addCase(getStories.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
-      .addCase(deleteStory.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(deleteStory.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
         state.stories = state.stories.filter(
           (story) => story.id !== action.payload.id,
         );
-      })
-      .addCase(deleteStory.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
       });
   },
 });
 
-export const { reset } = storySlice.actions;
 export default storySlice.reducer;
