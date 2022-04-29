@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createGame, getGames, reset } from '../store/gameSlice';
 import { getTeams } from '../store/teamSlice';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
 
@@ -52,71 +52,76 @@ const NewGame = () => {
     } else {
       dispatch(createGame({ gameDate, time, teamOne, teamTwo }));
       toast.success('Game added!');
-      setGameDate('');
-      setTime('');
-      setTeamOne('');
-      setTeamTwo('');
+      navigate('/dashboard');
     }
   };
 
   return (
     <div>
-      <h3>Create New Game</h3>
-      <Form onSubmit={onSubmit}>
-        <Form.Group className="mb-3" controlId="gameDate">
-          <Form.Label>Game Date</Form.Label>
-          <Form.Control
-            type="date"
-            value={gameDate}
-            onChange={(e) => setGameDate(e.target.value)}
-          />
-        </Form.Group>
+      <Container>
+        <h3 className="text-center mt-3">Create New Game</h3>
+        <Form onSubmit={onSubmit} className="d-flex flex-column">
+          <Form.Group className="mb-3" controlId="gameDate">
+            <Form.Label>Game Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={gameDate}
+              onChange={(e) => setGameDate(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="time">
-          <Form.Label>Game Time</Form.Label>
-          <Form.Control
-            type="text"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="time">
+            <Form.Label>Game Time</Form.Label>
+            <Form.Control
+              type="text"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="teamOne">
-          <Form.Label>Home Team</Form.Label>
-          <Form.Select
-            value={teamOne}
-            onChange={(e) => setTeamOne(e.target.value)}>
-            <option value="">Select Home Team</option>
-            {teams.map((team) => {
-              return (
-                <option value={team.name} key={team.id}>
-                  {team.name}
-                </option>
-              );
-            })}
-          </Form.Select>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="teamOne">
+            <Form.Label>Home Team</Form.Label>
+            <Form.Select
+              value={teamOne}
+              onChange={(e) => setTeamOne(e.target.value)}>
+              <option value="">Select Home Team</option>
+              {teams.map((team) => {
+                return (
+                  <option value={team.name} key={team.id}>
+                    {team.name}
+                  </option>
+                );
+              })}
+            </Form.Select>
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="teamTwo">
-          <Form.Label>Away Team</Form.Label>
-          <Form.Select
-            value={teamTwo}
-            onChange={(e) => setTeamTwo(e.target.value)}>
-            <option value="">Select Away Team</option>
-            {teams.map((team) => {
-              return (
-                <option value={team.name} key={team.id}>
-                  {team.name}
-                </option>
-              );
-            })}
-          </Form.Select>
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="teamTwo">
+            <Form.Label>Away Team</Form.Label>
+            <Form.Select
+              value={teamTwo}
+              onChange={(e) => setTeamTwo(e.target.value)}>
+              <option value="">Select Away Team</option>
+              {teams.map((team) => {
+                return (
+                  <option value={team.name} key={team.id}>
+                    {team.name}
+                  </option>
+                );
+              })}
+            </Form.Select>
+          </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Submit
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+        <Button
+          variant="secondary"
+          className="mt-3"
+          onClick={() => navigate('/dashboard')}>
+          Back to Dashboard
         </Button>
-      </Form>
+      </Container>
     </div>
   );
 };

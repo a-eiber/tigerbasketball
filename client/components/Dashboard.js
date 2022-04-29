@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/authSlice';
 import RegisterNewAdmin from './RegisterNewAdmin';
 import AdminStories from './AdminStories';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import NewGame from './NewGame';
 import NewTeam from './NewTeam';
+import Button from 'react-bootstrap/Button';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -29,17 +30,31 @@ const Dashboard = () => {
       <Container>
         <h1 className="text-center mt-3">Dashboard</h1>
         <hr />
-        <NewTeam />
-        <hr />
-        <NewGame />
-        <hr />
-        <AdminStories />
-        <hr />
-        <RegisterNewAdmin />
-        <hr />
-        <button type="button" onClick={handleLogout}>
+        <div className="d-flex justify-content-between">
+          <Button
+            variant="primary"
+            onClick={() => navigate('/dashboard/new-team')}>
+            Create New Team
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => navigate('/dashboard/new-game')}>
+            Create New Game
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => navigate('/dashboard/new-story')}>
+            Create News Alert
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => navigate('/dashboard/new-admin')}>
+            Create New Admin
+          </Button>
+        </div>
+        <Button variant="secondary" className="mt-3" onClick={handleLogout}>
           Logout
-        </button>
+        </Button>
       </Container>
     </div>
   );

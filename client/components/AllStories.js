@@ -1,39 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getStories, reset, deleteStory } from '../store/storySlice';
-import { Button, Container } from 'react-bootstrap';
+import { getStories, deleteStory } from '../store/storySlice';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import timeAgo from 'node-time-ago';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
 
 const AllStories = () => {
   toast.configure();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { stories, isLoading, isError, message } = useSelector(
-    (state) => state.stories,
-  );
-
+  const { stories } = useSelector((state) => state.stories);
   const { user } = useSelector((state) => state.auth);
 
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
-
     dispatch(getStories());
-    return () => {
-      dispatch(reset());
-    };
-  }, [isError, message, dispatch, toggle]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  }, [toggle]);
 
   return (
     <div>

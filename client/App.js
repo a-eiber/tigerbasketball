@@ -13,6 +13,10 @@ import Schedule from './components/Schedule';
 import Standings from './components/Standings';
 import Results from './components/Results';
 import Register from './components/Register';
+import NewTeam from './components/NewTeam';
+import NewGame from './components/NewGame';
+import AdminStories from './components/AdminStories';
+import RegisterNewAdmin from './components/RegisterNewAdmin';
 
 function App() {
   return (
@@ -22,13 +26,25 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/news" element={<AllStories />} />
             <Route exact path="/schedule" element={<Schedule />} />
             <Route exact path="/standings" element={<Standings />} />
             <Route exact path="/results" element={<Results />} />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/dashboard/new-team" element={<NewTeam />} />
+            <Route exact path="/dashboard/new-game" element={<NewGame />} />
+            <Route
+              exact
+              path="/dashboard/new-story"
+              element={<AdminStories />}
+            />
+            <Route
+              exact
+              path="/dashboard/new-admin"
+              element={<RegisterNewAdmin />}
+            />
           </Routes>
           <Footer />
         </div>
