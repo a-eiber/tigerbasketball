@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Team },
 } = require('../server/db');
 
 /**
@@ -18,8 +18,19 @@ async function seed() {
     User.create({ username: 'alec', password: 'alec151884', isAdmin: true }),
     User.create({ username: 'bruce', password: 'bruce151884', isAdmin: true }),
   ]);
-
   console.log(`seeded ${users.length} users`);
+
+  // Creating Teams
+  const teams = await Promise.all([
+    Team.create({ name: 'Knicks' }),
+    Team.create({ name: 'Pride' }),
+    Team.create({ name: 'Golden Bears' }),
+    Team.create({ name: 'Wildcats' }),
+  ]);
+  console.log(`seeded ${teams.length} teams`);
+
+  
+
   console.log(`seeded successfully`);
   return {
     users: {

@@ -37,12 +37,12 @@ const Schedule = () => {
             <tbody>
               {[...games]
                 .sort((a, b) => {
-                  let da = new Date(a.gameDate),
-                    db = new Date(b.gameDate);
+                  let da = new Date(a.gameday.date),
+                    db = new Date(b.gameday.date);
                   return da - db;
                 })
                 .map((game) => {
-                  const day = new Date(game.gameDate);
+                  const day = new Date(game.gameday.date);
                   const day2 = new Date(day).setDate(day.getDate() + 1);
                   const date = new Date(day2);
                   return (

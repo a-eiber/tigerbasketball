@@ -11,7 +11,11 @@ module.exports = router;
 // Route:         GET /api/games
 router.get('/', async (req, res, next) => {
   try {
-    const games = await Game.findAll();
+    const games = await Game.findAll({
+      include: {
+        model: GameDay,
+      },
+    });
     res.json(games);
   } catch (error) {
     next(error);
@@ -24,6 +28,9 @@ router.get('/:date', async (req, res, next) => {
   try {
     const games = await Game.findAll({
       where: { gameDate: req.params.date },
+      include: {
+        GameDay,
+      },
     });
     res.json(games);
   } catch (error) {
@@ -32,10 +39,21 @@ router.get('/:date', async (req, res, next) => {
 });
 
 // Description:   Create a game
-// Route:         PUT /api/games
+// Route:         POST /api/games
 router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const game = await Game.create(req.body);
+    const { gameDate, time, teamOne, teamTwo } = req.body;
+    const { id } = await GameDay.findOne({
+      where: {
+        date: gameDate,
+      },
+    });
+    const game = await Game.create({
+      time,
+      teamOne,
+      teamTwo,
+      gamedayId: id,
+    });
     res.status(201).json(game);
   } catch (error) {
     next(error);
@@ -43,7 +61,7 @@ router.post('/', requireToken, isAdmin, async (req, res, next) => {
 });
 
 // Description: Delete game
-// Route:       DELETE /api/stories/:id
+// Route:       DELETE /api/games/:id
 router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
     const game = await Game.findByPk(req.params.id);

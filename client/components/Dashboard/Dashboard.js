@@ -29,21 +29,31 @@ const Dashboard = () => {
         <hr />
         <div className="d-flex justify-content-between">
           <Button
+            className="mx-3"
             variant="primary"
             onClick={() => navigate('/dashboard/new-team')}>
             Create New Team
           </Button>
           <Button
+            className="mx-3"
+            variant="primary"
+            onClick={() => navigate('/dashboard/new-game-day')}>
+            Create New Game Day
+          </Button>
+          <Button
+            className="mx-3"
             variant="primary"
             onClick={() => navigate('/dashboard/new-game')}>
             Create New Game
           </Button>
           <Button
+            className="mx-3"
             variant="primary"
             onClick={() => navigate('/dashboard/new-story')}>
             Create News Alert
           </Button>
           <Button
+            className="mx-3"
             variant="primary"
             onClick={() => navigate('/dashboard/new-admin')}>
             Create New Admin

@@ -1,12 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
-const GameDay = require('./GameDay');
-const Team = require('./Team');
 
 const Game = db.define('game', {
-  gameDate: {
-    type: Sequelize.STRING,
-  },
   time: {
     type: Sequelize.STRING,
   },

@@ -11,13 +11,11 @@ const HomePageSchedule = ({ games }) => {
 
   if (games && games.length > 0) {
     sortedGames = [...games].sort((a, b) => {
-      const da = new Date(a.gameDate);
-      const db = new Date(b.gameDate);
+      const da = new Date(a.gameday.date);
+      const db = new Date(b.gameday.date);
       return da - db;
     });
-
-    date = new Date([...sortedGames].shift().gameDate);
-
+    date = new Date([...sortedGames].shift().gameday.date);
     sortedDate = new Date(date.setDate(date.getDate() + 1)).toDateString(
       'en-US',
     );
@@ -41,7 +39,7 @@ const HomePageSchedule = ({ games }) => {
         {sortedGames && sortedGames.length > 0 ? (
           <ListGroup className="mt-1">
             {sortedGames.map((game) => {
-              let newGameDate = new Date(game.gameDate);
+              let newGameDate = new Date(game.gameday.date);
               let updatedGameDate = new Date(
                 newGameDate.setDate(newGameDate.getDate() + 1),
               ).toDateString('en-US');

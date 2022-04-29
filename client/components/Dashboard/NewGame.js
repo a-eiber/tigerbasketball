@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createGame, getGames } from '../../store/gameSlice';
 import { getTeams } from '../../store/teamSlice';
+import { getGameDays } from '../../store/gameDaySlice';
 import { Form, Button, Container } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { injectStyle } from 'react-toastify/dist/inject-style';
@@ -19,6 +20,7 @@ const NewGame = () => {
 
   const { user } = useSelector((state) => state.auth);
   const { teams } = useSelector((state) => state.teams);
+  const { gameDays } = useSelector((state) => state.gameDays);
 
   useEffect(() => {
     if (!user) {
@@ -27,6 +29,7 @@ const NewGame = () => {
 
     dispatch(getGames());
     dispatch(getTeams());
+    dispatch(getGameDays());
   }, [user]);
 
   const onSubmit = (e) => {
@@ -49,11 +52,18 @@ const NewGame = () => {
         <Form onSubmit={onSubmit} className="d-flex flex-column">
           <Form.Group className="mb-3" controlId="gameDate">
             <Form.Label>Game Date</Form.Label>
-            <Form.Control
-              type="date"
+            <Form.Select
               value={gameDate}
-              onChange={(e) => setGameDate(e.target.value)}
-            />
+              onChange={(e) => setGameDate(e.target.value)}>
+              <option value="">Select Game Day</option>
+              {gameDays.map((day) => {
+                return (
+                  <option value={day.date} key={day.id}>
+                    {new Date(day.date.replace(/-/g, '/')).toDateString()}
+                  </option>
+                );
+              })}
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="time">

@@ -3,7 +3,7 @@ const db = require('../db');
 
 const GameDay = db.define('gameday', {
   date: {
-    type: Sequelize.STRING,
+    type: Sequelize.DATEONLY,
     unique: true,
     allowNull: false,
   },

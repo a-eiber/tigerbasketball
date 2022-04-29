@@ -15,6 +15,7 @@ import Results from './components/Results';
 import Register from './components/Register';
 import NewTeam from './components/Dashboard/NewTeam';
 import NewGame from './components/Dashboard/NewGame';
+import NewGameDay from './components/Dashboard/NewGameDay';
 import AdminStories from './components/Dashboard/AdminStories';
 import RegisterNewAdmin from './components/Dashboard/RegisterNewAdmin';
 
@@ -35,6 +36,11 @@ function App() {
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/dashboard/new-team" element={<NewTeam />} />
             <Route exact path="/dashboard/new-game" element={<NewGame />} />
+            <Route
+              exact
+              path="/dashboard/new-game-day"
+              element={<NewGameDay />}
+            />
             <Route
               exact
               path="/dashboard/new-story"
