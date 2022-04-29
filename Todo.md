@@ -6,3 +6,4 @@
 - This involves making a new API ({limit: 5} in the find all) and updating the slice to add a getSomeStories
 
 3. Add a Headline state so admin can update in the dashboard
+4. Does the AdminStories page need to get all stories from the store?

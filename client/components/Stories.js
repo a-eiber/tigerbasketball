@@ -5,28 +5,28 @@ import { getStories, reset } from '../store/storySlice';
 import { Button, Container } from 'react-bootstrap';
 import timeAgo from 'node-time-ago';
 
-const Stories = () => {
+const Stories = ({ stories }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { stories, isLoading, isError, message } = useSelector(
-    (state) => state.stories,
-  );
+  // const { stories, isLoading, isError, message } = useSelector(
+  //   (state) => state.stories,
+  // );
 
-  useEffect(() => {
-    if (isError) {
-      console.log(message);
-    }
+  // useEffect(() => {
+  //   if (isError) {
+  //     console.log(message);
+  //   }
 
-    dispatch(getStories());
-    return () => {
-      dispatch(reset());
-    };
-  }, [isError, message, dispatch]);
+  //   dispatch(getStories());
+  //   return () => {
+  //     dispatch(reset());
+  //   };
+  // }, [isError, message, dispatch]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <div>

@@ -5,6 +5,8 @@ import { logout } from '../store/authSlice';
 import RegisterNewAdmin from './RegisterNewAdmin';
 import AdminStories from './AdminStories';
 import { Container } from 'react-bootstrap';
+import NewGame from './NewGame';
+import NewTeam from './NewTeam';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -25,7 +27,11 @@ const Dashboard = () => {
   return (
     <div>
       <Container>
-        <h1>Dashboard</h1>
+        <h1 className="text-center mt-3">Dashboard</h1>
+        <hr />
+        <NewTeam />
+        <hr />
+        <NewGame />
         <hr />
         <AdminStories />
         <hr />

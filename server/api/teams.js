@@ -9,9 +9,9 @@ module.exports = router;
 
 // Description:   Get all teams
 // Route:         GET /api/teams
-router.get('/', requireToken, isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const teams = await Team.findAll({ include: Player });
+    const teams = await Team.findAll();
     res.json(teams);
   } catch (error) {
     next(error);
@@ -20,11 +20,9 @@ router.get('/', requireToken, isAdmin, async (req, res, next) => {
 
 // Description:   Get single team
 // Route:         GET /api/teams/:teamId
-router.get('/:teamId', requireToken, isAdmin, async (req, res, next) => {
+router.get('/:teamId', async (req, res, next) => {
   try {
-    const team = await Team.findByPk(req.params.teamId, {
-      include: Player,
-    });
+    const team = await Team.findByPk(req.params.teamId);
     res.json(team);
   } catch (error) {
     next(error);
@@ -33,7 +31,7 @@ router.get('/:teamId', requireToken, isAdmin, async (req, res, next) => {
 
 // Description: Create team
 // Route:       POST /api/teams
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
     const team = await Team.create(req.body);
     res.status(201).json(team);
@@ -58,8 +56,8 @@ router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
 // Route:       PUT /api/teams/:id
 router.put('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const team = await Team.findByPk(req.params.id, { include: Player });
-    const updatedTeam = await team.update(req.body, { include: Player });
+    const team = await Team.findByPk(req.params.id);
+    const updatedTeam = await team.update(req.body);
     res.json(updatedTeam);
   } catch (error) {
     next(error);
