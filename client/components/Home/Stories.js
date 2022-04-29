@@ -26,8 +26,9 @@ const Stories = ({ stories }) => {
                 return (
                   <div key={story.id}>
                     <h3>{story.title}</h3>
-                    <p>By: {story.author}</p>
-                    <p>Date: {timeAgo(story.updatedAt)}</p>
+                    <p>
+                      Posted By: {story.author} {timeAgo(story.updatedAt)}
+                    </p>
                     <p
                       dangerouslySetInnerHTML={{ __html: story.sanitizedHTML }}
                     />

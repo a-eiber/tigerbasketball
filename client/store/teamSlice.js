@@ -36,6 +36,24 @@ export const getTeams = createAsyncThunk(
   },
 );
 
+// Delete team by id
+export const deleteTeam = createAsyncThunk(
+  'teams/deleteTeam',
+  async (id, thunkAPI) => {
+    try {
+      const adminToken = localStorage.getItem('token');
+      const response = await axios.delete(`/api/teams/${id}`, {
+        headers: {
+          authorization: adminToken,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.toString());
+    }
+  },
+);
+
 export const teamSlice = createSlice({
   name: 'teams',
   initialState,
@@ -51,6 +69,11 @@ export const teamSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.teams = action.payload;
+      })
+      .addCase(deleteTeam.fulfilled, (state, action) => {
+        state.teams = state.teams.filter(
+          (team) => team.id !== action.payload.id,
+        );
       });
   },
 });
