@@ -34,9 +34,6 @@ const Player = db.define('player', {
   },
   fathersEmail: {
     type: Sequelize.STRING,
-    validate: {
-      isEmail: true,
-    },
   },
   mothersName: {
     type: Sequelize.STRING,
@@ -46,9 +43,6 @@ const Player = db.define('player', {
   },
   mothersEmail: {
     type: Sequelize.STRING,
-    validate: {
-      isEmail: true,
-    },
   },
 });
 

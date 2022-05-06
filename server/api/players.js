@@ -9,7 +9,7 @@ module.exports = router;
 
 // Description:   Get all players
 // Route:         GET /api/players
-router.get('/', requireToken, isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const players = await Player.findAll({ include: Team });
     res.json(players);
@@ -35,7 +35,8 @@ router.get('/:playerId', requireToken, isAdmin, async (req, res, next) => {
 // Route:       POST /api/players
 router.post('/', async (req, res, next) => {
   try {
-    const player = await Player.create(req.body);
+    const { values } = req.body;
+    const player = await Player.create(values);
     res.status(201).json(player);
   } catch (error) {
     next(error);
